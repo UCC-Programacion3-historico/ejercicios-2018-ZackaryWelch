@@ -3,7 +3,14 @@
 
 
 class Color {
+public:
+    int getColor();
+    void tenirColor();
 
+protected:
+    int rojo;
+    int verde;
+    int azul;
 };
 
 
