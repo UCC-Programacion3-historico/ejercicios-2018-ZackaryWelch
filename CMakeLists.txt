@@ -1,17 +1,270 @@
-cmake_minimum_required(VERSION 2.8)
-project(Programacion3)
+cmake_minimum_required(VERSION 3.12)
+project(ejercicios_2018_ZackaryWelch)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# Agrego todos los test.
-add_subdirectory(test)
-add_subdirectory(U00_Repaso)
-add_subdirectory(U01_Recursividad)
-add_subdirectory(U02_Listas)
-add_subdirectory(U03_Pilas)
-add_subdirectory(U04_Colas)
-add_subdirectory(U05_Hash)
-add_subdirectory(U06_Arbol)
-add_subdirectory(U07_Grafos)
-add_subdirectory(U08_Ordenamiento)
-add_subdirectory(U09_Busqueda)
+include_directories(test/lib/gtest-1.8.0/include)
+include_directories(test/lib/gtest-1.8.0/include/gtest)
+include_directories(test/lib/gtest-1.8.0/include/gtest/internal)
+include_directories(test/lib/gtest-1.8.0/include/gtest/internal/custom)
+include_directories(test/lib/gtest-1.8.0/samples)
+include_directories(test/lib/gtest-1.8.0/src)
+include_directories(test/lib/gtest-1.8.0/test)
+include_directories(test/lib/gtest-1.8.0/xcode/Samples/FrameworkSample)
+include_directories(U00_Repaso/Ej-01)
+include_directories(U00_Repaso/Ej-02)
+include_directories(U00_Repaso/Ej-03)
+include_directories(U00_Repaso/Ej-05)
+include_directories(U01_Recursividad/Ej-01)
+include_directories(U01_Recursividad/Ej-02)
+include_directories(U01_Recursividad/Ej-03)
+include_directories(U01_Recursividad/Ej-04)
+include_directories(U01_Recursividad/Ej-05)
+include_directories(U02_Listas/Ej-01)
+include_directories(U02_Listas/Ej-04)
+include_directories(U02_Listas/Ej-05)
+include_directories(U02_Listas/Lista)
+include_directories(U03_Pilas/Pila)
+include_directories(U04_Colas/Cola)
+include_directories(U05_Hash/HashMap)
+include_directories(U06_Arbol/Arbol)
+
+add_executable(ejercicios_2018_ZackaryWelch
+        test/lib/gtest-1.8.0/codegear/gtest_all.cc
+        test/lib/gtest-1.8.0/codegear/gtest_link.cc
+        test/lib/gtest-1.8.0/include/gtest/internal/custom/gtest-port.h
+        test/lib/gtest-1.8.0/include/gtest/internal/custom/gtest-printers.h
+        test/lib/gtest-1.8.0/include/gtest/internal/custom/gtest.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-death-test-internal.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-filepath.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-internal.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-linked_ptr.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-param-util-generated.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-param-util.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-port-arch.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-port.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-string.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-tuple.h
+        test/lib/gtest-1.8.0/include/gtest/internal/gtest-type-util.h
+        test/lib/gtest-1.8.0/include/gtest/gtest-death-test.h
+        test/lib/gtest-1.8.0/include/gtest/gtest-message.h
+        test/lib/gtest-1.8.0/include/gtest/gtest-param-test.h
+        test/lib/gtest-1.8.0/include/gtest/gtest-printers.h
+        test/lib/gtest-1.8.0/include/gtest/gtest-spi.h
+        test/lib/gtest-1.8.0/include/gtest/gtest-test-part.h
+        test/lib/gtest-1.8.0/include/gtest/gtest-typed-test.h
+        test/lib/gtest-1.8.0/include/gtest/gtest.h
+        test/lib/gtest-1.8.0/include/gtest/gtest_pred_impl.h
+        test/lib/gtest-1.8.0/include/gtest/gtest_prod.h
+        test/lib/gtest-1.8.0/samples/prime_tables.h
+        test/lib/gtest-1.8.0/samples/sample1.cc
+        test/lib/gtest-1.8.0/samples/sample1.h
+        test/lib/gtest-1.8.0/samples/sample10_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample1_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample2.cc
+        test/lib/gtest-1.8.0/samples/sample2.h
+        test/lib/gtest-1.8.0/samples/sample2_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample3-inl.h
+        test/lib/gtest-1.8.0/samples/sample3_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample4.cc
+        test/lib/gtest-1.8.0/samples/sample4.h
+        test/lib/gtest-1.8.0/samples/sample4_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample5_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample6_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample7_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample8_unittest.cc
+        test/lib/gtest-1.8.0/samples/sample9_unittest.cc
+        test/lib/gtest-1.8.0/src/gtest-all.cc
+        test/lib/gtest-1.8.0/src/gtest-death-test.cc
+        test/lib/gtest-1.8.0/src/gtest-filepath.cc
+        test/lib/gtest-1.8.0/src/gtest-internal-inl.h
+        test/lib/gtest-1.8.0/src/gtest-port.cc
+        test/lib/gtest-1.8.0/src/gtest-printers.cc
+        test/lib/gtest-1.8.0/src/gtest-test-part.cc
+        test/lib/gtest-1.8.0/src/gtest-typed-test.cc
+        test/lib/gtest-1.8.0/src/gtest.cc
+        test/lib/gtest-1.8.0/src/gtest_main.cc
+        test/lib/gtest-1.8.0/test/gtest-death-test_ex_test.cc
+        test/lib/gtest-1.8.0/test/gtest-death-test_test.cc
+        test/lib/gtest-1.8.0/test/gtest-filepath_test.cc
+        test/lib/gtest-1.8.0/test/gtest-linked_ptr_test.cc
+        test/lib/gtest-1.8.0/test/gtest-listener_test.cc
+        test/lib/gtest-1.8.0/test/gtest-message_test.cc
+        test/lib/gtest-1.8.0/test/gtest-options_test.cc
+        test/lib/gtest-1.8.0/test/gtest-param-test2_test.cc
+        test/lib/gtest-1.8.0/test/gtest-param-test_test.cc
+        test/lib/gtest-1.8.0/test/gtest-param-test_test.h
+        test/lib/gtest-1.8.0/test/gtest-port_test.cc
+        test/lib/gtest-1.8.0/test/gtest-printers_test.cc
+        test/lib/gtest-1.8.0/test/gtest-test-part_test.cc
+        test/lib/gtest-1.8.0/test/gtest-tuple_test.cc
+        test/lib/gtest-1.8.0/test/gtest-typed-test2_test.cc
+        test/lib/gtest-1.8.0/test/gtest-typed-test_test.cc
+        test/lib/gtest-1.8.0/test/gtest-typed-test_test.h
+        test/lib/gtest-1.8.0/test/gtest-unittest-api_test.cc
+        test/lib/gtest-1.8.0/test/gtest_all_test.cc
+        test/lib/gtest-1.8.0/test/gtest_break_on_failure_unittest_.cc
+        test/lib/gtest-1.8.0/test/gtest_catch_exceptions_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_color_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_env_var_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_environment_test.cc
+        test/lib/gtest-1.8.0/test/gtest_filter_unittest_.cc
+        test/lib/gtest-1.8.0/test/gtest_help_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_list_tests_unittest_.cc
+        test/lib/gtest-1.8.0/test/gtest_main_unittest.cc
+        test/lib/gtest-1.8.0/test/gtest_no_test_unittest.cc
+        test/lib/gtest-1.8.0/test/gtest_output_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_pred_impl_unittest.cc
+        test/lib/gtest-1.8.0/test/gtest_premature_exit_test.cc
+        test/lib/gtest-1.8.0/test/gtest_prod_test.cc
+        test/lib/gtest-1.8.0/test/gtest_repeat_test.cc
+        test/lib/gtest-1.8.0/test/gtest_shuffle_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_sole_header_test.cc
+        test/lib/gtest-1.8.0/test/gtest_stress_test.cc
+        test/lib/gtest-1.8.0/test/gtest_throw_on_failure_ex_test.cc
+        test/lib/gtest-1.8.0/test/gtest_throw_on_failure_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_uninitialized_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_unittest.cc
+        test/lib/gtest-1.8.0/test/gtest_xml_outfile1_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_xml_outfile2_test_.cc
+        test/lib/gtest-1.8.0/test/gtest_xml_output_unittest_.cc
+        test/lib/gtest-1.8.0/test/production.cc
+        test/lib/gtest-1.8.0/test/production.h
+        test/lib/gtest-1.8.0/xcode/Samples/FrameworkSample/widget.cc
+        test/lib/gtest-1.8.0/xcode/Samples/FrameworkSample/widget.h
+        test/lib/gtest-1.8.0/xcode/Samples/FrameworkSample/widget_test.cc
+        test/U00_Repaso/Ej01.cpp
+        test/U00_Repaso/Ej02.cpp
+        test/U00_Repaso/Ej03.cpp
+        test/U00_Repaso/Ej04.cpp
+        test/U00_Repaso/Ej05.cpp
+        test/U00_Repaso/Ej06.cpp
+        test/U01_Recursividad/Ej01.cpp
+        test/U01_Recursividad/Ej02.cpp
+        test/U01_Recursividad/Ej03.cpp
+        test/U01_Recursividad/Ej04.cpp
+        test/U01_Recursividad/Ej05.cpp
+        test/U02_Listas/Ej01.cpp
+        test/U02_Listas/Ej02.cpp
+        test/U02_Listas/Ej03.cpp
+        test/U02_Listas/Ej04.cpp
+        test/U02_Listas/Ej05.cpp
+        test/U02_Listas/Ej06.cpp
+        test/U02_Listas/Lista.cpp
+        test/U03_Pilas/Ej01.cpp
+        test/U03_Pilas/Ej02.cpp
+        test/U03_Pilas/Ej03.cpp
+        test/U03_Pilas/Ej04.cpp
+        test/U03_Pilas/Ej05.cpp
+        test/U03_Pilas/Pila.cpp
+        test/U04_Colas/Colas.cpp
+        test/U04_Colas/Ej01.cpp
+        test/U04_Colas/Ej02.cpp
+        test/U04_Colas/Ej03.cpp
+        test/U04_Colas/Ej04.cpp
+        test/U04_Colas/Ej05.cpp
+        test/U05_Hash/Ej01.cpp
+        test/U05_Hash/Ej02.cpp
+        test/U05_Hash/Ej03.cpp
+        test/U05_Hash/HashMap.cpp
+        test/U06_Arbol/Arbol.cpp
+        test/U06_Arbol/Ej01.cpp
+        test/U06_Arbol/Ej02.cpp
+        test/U06_Arbol/Ej03.cpp
+        test/U06_Arbol/Ej04.cpp
+        test/U07_Grafos/Ej01.cpp
+        test/U07_Grafos/Ej02.cpp
+        test/U07_Grafos/Ej03.cpp
+        test/U08_Ordenamiento/Ej01.cpp
+        test/U08_Ordenamiento/Ej02.cpp
+        test/U08_Ordenamiento/Ej03.cpp
+        test/U08_Ordenamiento/Ej04.cpp
+        test/U08_Ordenamiento/Ej05.cpp
+        test/U09_Busqueda/Ej01.cpp
+        test/U09_Busqueda/Ej02.cpp
+        test/U09_Busqueda/Ej03.cpp
+        test/U09_Busqueda/Ej04.cpp
+        test/U09_Busqueda/Ej05.cpp
+        U00_Repaso/Ej-01/Circulo.cpp
+        U00_Repaso/Ej-01/Circulo.h
+        U00_Repaso/Ej-01/Color.cpp
+        U00_Repaso/Ej-01/Color.h
+        U00_Repaso/Ej-01/Cuadrado.cpp
+        U00_Repaso/Ej-01/Cuadrado.h
+        U00_Repaso/Ej-01/Geometria.cpp
+        U00_Repaso/Ej-01/Geometria.h
+        U00_Repaso/Ej-01/main.cpp
+        U00_Repaso/Ej-01/Triangulo.cpp
+        U00_Repaso/Ej-01/Triangulo.h
+        U00_Repaso/Ej-02/Calculadora.cpp
+        U00_Repaso/Ej-02/Calculadora.h
+        U00_Repaso/Ej-02/main.cpp
+        U00_Repaso/Ej-03/Calculadora.cpp
+        U00_Repaso/Ej-03/Calculadora.h
+        U00_Repaso/Ej-03/main.cpp
+        U00_Repaso/Ej-04/main.cpp
+        U00_Repaso/Ej-05/Entero.cpp
+        U00_Repaso/Ej-05/Entero.h
+        U00_Repaso/Ej-05/main.cpp
+        U00_Repaso/Ej-06/main.cpp
+        U01_Recursividad/Ej-01/main.cpp
+        U01_Recursividad/Ej-01/potencia.cpp
+        U01_Recursividad/Ej-01/potencia.h
+        U01_Recursividad/Ej-02/main.cpp
+        U01_Recursividad/Ej-02/sumatoria.cpp
+        U01_Recursividad/Ej-02/sumatoria.h
+        U01_Recursividad/Ej-03/ackerman.cpp
+        U01_Recursividad/Ej-03/ackerman.h
+        U01_Recursividad/Ej-03/main.cpp
+        U01_Recursividad/Ej-04/main.cpp
+        U01_Recursividad/Ej-04/mcd.cpp
+        U01_Recursividad/Ej-04/mcd.h
+        U01_Recursividad/Ej-05/digitos.cpp
+        U01_Recursividad/Ej-05/digitos.h
+        U01_Recursividad/Ej-05/main.cpp
+        U02_Listas/Ej-01/fnInvierte.h
+        U02_Listas/Ej-01/main.cpp
+        U02_Listas/Ej-02/main.cpp
+        U02_Listas/Ej-03/main.cpp
+        U02_Listas/Ej-04/main.cpp
+        U02_Listas/Ej-04/union.h
+        U02_Listas/Ej-05/CircList.h
+        U02_Listas/Ej-05/main.cpp
+        U02_Listas/Ej-06/main.cpp
+        U02_Listas/Lista/Lista.h
+        U03_Pilas/Ej-01/main.cpp
+        U03_Pilas/Ej-02/main.cpp
+        U03_Pilas/Ej-03/main.cpp
+        U03_Pilas/Ej-04/main.cpp
+        U03_Pilas/Ej-05/main.cpp
+        U03_Pilas/Pila/Pila.h
+        U04_Colas/Cola/Cola.h
+        U04_Colas/Ej-01/main.cpp
+        U04_Colas/Ej-02/main.cpp
+        U04_Colas/Ej-03/main.cpp
+        U04_Colas/Ej-04/main.cpp
+        U04_Colas/Ej-05/main.cpp
+        U05_Hash/Ej-01/main.cpp
+        U05_Hash/Ej-02/main.cpp
+        U05_Hash/Ej-03/main.cpp
+        U05_Hash/HashMap/HashEntry.h
+        U05_Hash/HashMap/HashMap.h
+        U06_Arbol/Arbol/ArbolBinario.h
+        U06_Arbol/Arbol/NodoArbol.h
+        U06_Arbol/Ej-01/main.cpp
+        U06_Arbol/Ej-02/main.cpp
+        U06_Arbol/Ej-03/main.cpp
+        U06_Arbol/Ej-04/main.cpp
+        U07_Grafos/Ej-01/main.cpp
+        U07_Grafos/Ej-02/main.cpp
+        U07_Grafos/Ej-03/main.cpp
+        U08_Ordenamiento/Ej-01/main.cpp
+        U08_Ordenamiento/Ej-02/main.cpp
+        U08_Ordenamiento/Ej-03/main.cpp
+        U08_Ordenamiento/Ej-04/main.cpp
+        U08_Ordenamiento/Ej-05/main.cpp
+        U09_Busqueda/Ej-01/main.cpp
+        U09_Busqueda/Ej-02/main.cpp
+        U09_Busqueda/Ej-03/main.cpp
+        U09_Busqueda/Ej-04/main.cpp
+        U09_Busqueda/Ej-05/main.cpp)
