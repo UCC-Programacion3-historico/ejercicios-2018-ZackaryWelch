@@ -1,3 +1,5 @@
+#include "nodo.h"
+
 #ifndef LISTA_H
 #define LISTA_H
 
@@ -9,7 +11,7 @@
 template<class T>
 class Lista {
 private:
-
+    nodo<T> *inicio;
 public:
     Lista();
 
@@ -42,7 +44,9 @@ public:
  * @tparam T
  */
 template<class T>
-Lista<T>::Lista() {}
+Lista<T>::Lista() {
+    inicio = nullptr;
+}
 
 
 /**
@@ -69,7 +73,9 @@ Lista<T>::~Lista() {}
  * @return true si la lista esta vacia, sino false
  */
 template<class T>
-bool Lista<T>::esVacia() { return false;}
+bool Lista<T>::esVacia() {
+    return inicio == nullptr;
+}
 
 
 /**
@@ -78,7 +84,17 @@ bool Lista<T>::esVacia() { return false;}
  * @return la cantidad de nodos de la lista
  */
 template<class T>
-int Lista<T>::getTamanio() {}
+int Lista<T>::getTamanio() {
+    int cant = 0;
+    nodo<T> *aux = inicio;
+
+    while(aux != nullptr) {
+        cant++;
+        aux = aux->getNext();
+    }
+
+    return cant;
+}
 
 
 /**
@@ -88,7 +104,29 @@ int Lista<T>::getTamanio() {}
  * @param dato  dato a insertar
  */
 template<class T>
-void Lista<T>::insertar(int pos, T dato) {}
+void Lista<T>::insertar(int pos, T dato) {
+    auto *nuevo = new nodo<T>();
+    nuevo->setDato(dato);
+    nodo<T> *aux = inicio;
+    int pos_actual = 0;
+
+    if(pos == 0) {
+        nuevo->setNext(inicio);
+        inicio = nuevo;
+        return;
+    }
+
+    while(pos_actual < pos - 1 and aux != nullptr) {
+        pos_actual++;
+        aux = aux->getNext();
+    }
+
+    if(aux == nullptr)
+        throw 1;
+
+    nuevo->setNext(aux->getNext());
+    aux->setNext(nuevo);
+}
 
 
 /**
@@ -97,7 +135,9 @@ void Lista<T>::insertar(int pos, T dato) {}
  * @param dato dato a insertar
  */
 template<class T>
-void Lista<T>::insertarPrimero(T dato) {}
+void Lista<T>::insertarPrimero(T dato) {
+    insertar(0, dato);
+}
 
 
 /**
@@ -106,7 +146,9 @@ void Lista<T>::insertarPrimero(T dato) {}
  * @param dato dato a insertar
  */
 template<class T>
-void Lista<T>::insertarUltimo(T dato) {}
+void Lista<T>::insertarUltimo(T dato) {
+    insertar(getTamanio(), dato);
+}
 
 
 /**
@@ -115,7 +157,20 @@ void Lista<T>::insertarUltimo(T dato) {}
  * @param pos posicion del nodo a eliminar
  */
 template<class T>
-void Lista<T>::remover(int pos) {}
+void Lista<T>::remover(int pos) {
+    auto *aux = inicio;
+
+    while(pos <= 1 && aux != nullptr) {
+        pos--;
+        aux = aux->getNext();
+    }
+
+    if(aux == nullptr) {
+        throw 1;
+    }
+
+    aux->setNext(aux->getNext()->getNext());
+}
 
 
 /**
