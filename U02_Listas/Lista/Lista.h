@@ -160,7 +160,7 @@ template<class T>
 void Lista<T>::remover(int pos) {
     auto *aux = inicio;
 
-    while(pos <= 1 && aux != nullptr) {
+    while(pos > 0 && aux != nullptr) {
         pos--;
         aux = aux->getNext();
     }
@@ -169,7 +169,15 @@ void Lista<T>::remover(int pos) {
         throw 1;
     }
 
-    aux->setNext(aux->getNext()->getNext());
+    if(pos == 0){
+        inicio = inicio->getNext();
+        delete aux;
+    }else {
+        auto *siguiente = aux->getNext();
+        aux->setNext(siguiente->getNext());
+        delete siguiente;
+        //aux->setNext(nullptr);
+    }
 }
 
 
@@ -180,7 +188,20 @@ void Lista<T>::remover(int pos) {
  * @return dato almacenado en el nodo
  */
 template<class T>
-T Lista<T>::getDato(int pos) {}
+T Lista<T>::getDato(int pos) {
+    auto *aux = inicio;
+
+    while(pos > 0 && aux != nullptr) {
+        pos--;
+        aux = aux->getNext();
+    }
+
+    if(aux == nullptr) {
+        throw 1;
+    }
+
+    return aux->getDato();
+}
 
 
 /**
@@ -190,7 +211,20 @@ T Lista<T>::getDato(int pos) {}
  * @param dato nuevo dato a almacenar
  */
 template<class T>
-void Lista<T>::reemplazar(int pos, T dato) {}
+void Lista<T>::reemplazar(int pos, T dato) {
+    auto *aux = inicio;
+
+    while(pos > 0 && aux != nullptr) {
+        pos--;
+        aux = aux->getNext();
+    }
+
+    if(aux == nullptr) {
+        throw 1;
+    }
+
+    aux->setDato(dato);
+}
 
 
 /**
@@ -198,7 +232,9 @@ void Lista<T>::reemplazar(int pos, T dato) {}
  * @tparam T
  */
 template<class T>
-void Lista<T>::vaciar() {}
+void Lista<T>::vaciar() {
+
+}
 
 
 #endif //LISTA_H
