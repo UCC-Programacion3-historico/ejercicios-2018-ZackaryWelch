@@ -12,10 +12,6 @@ T Calculadora<T,P>::restar(T a, T b) {
 
 template<class T, class P>
 T Calculadora<T,P>::dividir(T a, T b) {
-	//T tmp;
-	if(b == 0)
-		throw 404;
-
 	return a / b;
 }
 

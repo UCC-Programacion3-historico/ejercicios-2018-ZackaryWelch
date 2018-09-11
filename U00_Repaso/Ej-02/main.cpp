@@ -13,12 +13,7 @@ int main() {
     cout << micalc.dividir(4,2) << endl;
     cout << micalc.multiplicar(2,3) << endl;
 
-    try {
-        cout << micalc.dividir(4,0) << endl;
-    } catch (int e) {
-        cout << "error: " << e << endl;
-    }
-
+	//cout << micalc.dividir(4,0) << endl;
 
     cout << micalcDouble.sumar(2,2) << endl;
     cout << micalcDouble.restar(2,3) << endl;
