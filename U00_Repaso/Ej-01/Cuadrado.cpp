@@ -1,7 +1,7 @@
 #include "Cuadrado.h"
 
 double Cuadrado::getDiagonal() {
-    return sqrt(alto * alto + ancho * ancho)
+    return sqrt(alto * alto + ancho * ancho);
 }
 
 float Cuadrado::getPerimetro() {
