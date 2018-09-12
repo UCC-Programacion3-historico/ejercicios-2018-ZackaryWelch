@@ -1,6 +1,8 @@
 #ifndef LISTA_H
 #define LISTA_H
 
+#include "nodo.h"
+
 /**
  * Clase que implementa una Pila generica, ya que puede
  * almacenar cualquier tipo de dato T
@@ -9,8 +11,7 @@
 template<class T>
 class Pila {
 private:
-	T arr[1024];
-	int tos;
+	nodo<T> *tope;
 public:
     Pila();
 
@@ -30,7 +31,7 @@ public:
  */
 template<class T>
 Pila<T>::Pila() {
-	tos = 0;
+	tope = nullptr;
 }
 
 
@@ -40,7 +41,14 @@ Pila<T>::Pila() {
  * @tparam T
  */
 template<class T>
-Pila<T>::~Pila() {}
+Pila<T>::~Pila() {
+	nodo<T> aux = tope;
+	while(aux != nullptr) {
+		tope = aux.getNext();
+		delete aux;
+		aux = tope;
+	}
+}
 
 
 /**
@@ -50,8 +58,10 @@ Pila<T>::~Pila() {}
  */
 template<class T>
 void Pila<T>::push(T dato) {
-	if(tos != 1024)
-		arr[tos++] = dato;
+	auto *nuevo = new nodo<T>();
+	nuevo->setNext(tope);
+	nuevo->setDato(dato);
+	tope = nuevo;
 }
 
 
@@ -62,8 +72,12 @@ void Pila<T>::push(T dato) {
  */
 template<class T>
 T Pila<T>::pop() {
-	if(tos != 0)
-		return arr[--tos];
+	if(tope == nullptr)
+		throw 1;
+	T dato = tope->getDato();
+	tope = tope->getNext();
+
+	return dato;	
 }
 
 /**
@@ -73,7 +87,7 @@ T Pila<T>::pop() {
  */
 template<class T>
 bool Pila<T>::esVacia() {
-	return (tos == 0);
+	return (tope == nullptr);
 }
 
 #endif //LISTA_H
