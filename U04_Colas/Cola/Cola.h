@@ -1,6 +1,8 @@
 #ifndef COLA_H
 #define COLA_H
 
+#include "nodo.h"
+
 /**
  * Clase que implementa una Cola generica, ya que puede
  * almacenar cualquier tipo de dato T
@@ -9,7 +11,8 @@
 template<class T>
 class Cola {
 private:
-
+	nodo<T> *entrada;
+	nodo<T> *salida;
 public:
     Cola();
 
@@ -28,7 +31,10 @@ public:
  * @tparam T
  */
 template<class T>
-Cola<T>::Cola() {}
+Cola<T>::Cola() {
+	entrada = nullptr;
+	salida = nullptr;
+}
 
 
 /**
@@ -46,7 +52,14 @@ Cola<T>::~Cola() {}
  * @param dato  dato a insertar
  */
 template<class T>
-void Cola<T>::encolar(T dato) {}
+void Cola<T>::encolar(T dato) {
+	auto *nuevo = new nodo<T>(dato, nullptr);
+	if(entrada != nullptr)
+		entrada->setNext(nuevo);
+	else
+		salida = nuevo;
+	entrada = nuevo;
+}
 
 
 /**
@@ -55,7 +68,20 @@ void Cola<T>::encolar(T dato) {}
  * @return dato almacenado en el nodo
  */
 template<class T>
-T Cola<T>::desencolar() {}
+T Cola<T>::desencolar() {
+	if (salida == nullptr)
+        throw 1;
+
+    T dato = salida->getDato();
+    nodo<T> *salida_anterior = salida;
+    salida = salida->getNext();
+
+    if (salida == nullptr)
+        entrada = nullptr;
+
+    delete salida_anterior;
+    return dato;
+}
 
 /**
  * Responde si la Cola se encuentra Vacía
@@ -64,7 +90,7 @@ T Cola<T>::desencolar() {}
  */
 template<class T>
 bool Cola<T>::esVacia() {
-
+	return (salida == nullptr);
 }
 
 #endif //LISTA_H
