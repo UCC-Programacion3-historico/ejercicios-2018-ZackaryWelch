@@ -23,13 +23,13 @@ public:
 
     int getTamanio();
 
-    void insertar(int pos, T dato);
+    void insertar(unsigned int pos, T dato);
 
     void insertarPrimero(T dato);
 
     void insertarUltimo(T dato);
 
-    void remover(int pos);
+    void remover(unsigned int pos);
 
     T getDato(int pos);
 
@@ -104,7 +104,7 @@ int Lista<T>::getTamanio() {
  * @param dato  dato a insertar
  */
 template<class T>
-void Lista<T>::insertar(int pos, T dato) {
+void Lista<T>::insertar(unsigned int pos, T dato) {
     auto *nuevo = new nodo<T>();
     nuevo->setDato(dato);
     nodo<T> *aux = inicio;
@@ -157,10 +157,10 @@ void Lista<T>::insertarUltimo(T dato) {
  * @param pos posicion del nodo a eliminar
  */
 template<class T>
-void Lista<T>::remover(int pos) {
+void Lista<T>::remover(unsigned int pos) {
     auto *aux = inicio;
 
-    while(pos > 0 && aux != nullptr) {
+    while(pos > 1 && aux != nullptr) {
         pos--;
         aux = aux->getNext();
     }
@@ -174,9 +174,10 @@ void Lista<T>::remover(int pos) {
         delete aux;
     }else {
         auto *siguiente = aux->getNext();
+		if(siguiente == nullptr)
+			throw 2;
         aux->setNext(siguiente->getNext());
         delete siguiente;
-        //aux->setNext(nullptr);
     }
 }
 
@@ -232,9 +233,6 @@ void Lista<T>::reemplazar(int pos, T dato) {
  * @tparam T
  */
 template<class T>
-void Lista<T>::vaciar() {
-
-}
-
+void Lista<T>::vaciar() {}
 
 #endif //LISTA_H

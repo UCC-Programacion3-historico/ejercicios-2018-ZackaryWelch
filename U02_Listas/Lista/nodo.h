@@ -5,13 +5,13 @@ template<class T>
 class nodo {
 private:
     T dato;
-    nodo<T> *next;
+    nodo *next;
 public:
     T setDato(T dato) {
         this->dato = dato;
     }
 
-    T getDato() {
+    T getDato() const {
         return dato;
     }
 
@@ -19,7 +19,7 @@ public:
         this->next = next;
     }
 
-    nodo<T>* getNext() {
+    nodo<T>* getNext() const {
         return next;
     }
 };
