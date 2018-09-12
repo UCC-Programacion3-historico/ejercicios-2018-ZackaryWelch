@@ -9,7 +9,8 @@
 template<class T>
 class Pila {
 private:
-
+	T arr[1024];
+	int tos;
 public:
     Pila();
 
@@ -28,7 +29,9 @@ public:
  * @tparam T
  */
 template<class T>
-Pila<T>::Pila() {}
+Pila<T>::Pila() {
+	tos = 0;
+}
 
 
 /**
@@ -46,7 +49,10 @@ Pila<T>::~Pila() {}
  * @param dato  dato a insertar
  */
 template<class T>
-void Pila<T>::push(T dato) {}
+void Pila<T>::push(T dato) {
+	if(tos != 1024)
+		arr[tos++] = dato;
+}
 
 
 /**
@@ -55,7 +61,10 @@ void Pila<T>::push(T dato) {}
  * @return dato almacenado en el nodo
  */
 template<class T>
-T Pila<T>::pop() {}
+T Pila<T>::pop() {
+	if(tos != 0)
+		return arr[--tos];
+}
 
 /**
  * Responde si la pila se encuentra Vacía
@@ -64,7 +73,7 @@ T Pila<T>::pop() {}
  */
 template<class T>
 bool Pila<T>::esVacia() {
-
+	return (tos == 0);
 }
 
 #endif //LISTA_H
