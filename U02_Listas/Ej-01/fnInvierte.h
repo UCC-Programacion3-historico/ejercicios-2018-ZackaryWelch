@@ -2,10 +2,8 @@
 #ifndef FNINVIERTE_H
 #define FNINVIERTE_H
 
-
 template <class T>
 void fnInvierte (Lista<T> *lis);
-
 
 template <class T>
 void fnInvierte (Lista<T> *lis){
@@ -17,6 +15,5 @@ void fnInvierte (Lista<T> *lis){
 		lis->reemplazar(tamanio - i, pri);
 	}
 }
-
 
 #endif //FNINVIERTE_H

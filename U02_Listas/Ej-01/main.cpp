@@ -8,7 +8,7 @@ int main() {
 	std::cout << "Original:" << std::endl;
 	Lista<int> *lista = new Lista<int>();
 	for(int i = 10; i < 20; i++) {
-		lista->insertarPrimero(i);
+		lista->insertarUltimo(i);
 		std::cout << i;
 		if(i != 19)
 			std::cout << "->";
