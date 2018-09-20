@@ -1,4 +1,5 @@
 #include "nodo.h"
+#include <ostream>
 
 #ifndef LISTA_H
 #define LISTA_H
@@ -234,5 +235,15 @@ void Lista<T>::reemplazar(int pos, T dato) {
  */
 template<class T>
 void Lista<T>::vaciar() {}
+
+template<class T>
+std::ostream& operator<<(std::ostream& os, Lista<T>& l) {
+  	for(int i = 0; i < l.getTamanio(); i++) {
+        os << l.getDato(i);
+        if(i != l.getTamanio()-1)
+            os << "->";
+    }  
+    return os;
+}
 
 #endif //LISTA_H
