@@ -7,7 +7,7 @@ private:
     T dato;
     nodo *next;
 public:
-    T setDato(T dato) {
+    void setDato(T dato) {
         this->dato = dato;
     }
 

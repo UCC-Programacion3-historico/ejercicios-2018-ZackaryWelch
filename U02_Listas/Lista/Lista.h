@@ -109,7 +109,7 @@ void Lista<T>::insertar(unsigned int pos, T dato) {
     auto *nuevo = new nodo<T>();
     nuevo->setDato(dato);
     nodo<T> *aux = inicio;
-    int pos_actual = 0;
+    unsigned int pos_actual = 0;
 
     if(pos == 0) {
         nuevo->setNext(inicio);
