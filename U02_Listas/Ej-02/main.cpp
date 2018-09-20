@@ -5,14 +5,14 @@ using namespace std;
 
 int main() {
 	Lista<int> *lista = new Lista<int>();
-    int n, v, counter = 0;
+    int n, v, escoja = 0, counter = 0;
     
     cout << "Ejercicio 01/02\n" << endl;
 	cout << "Cuántos elementos? ";
     cin >> n;
     
     if(n < 1)
-        return 0;
+        return 1;
     
     do {
         cout << counter << ": ";
@@ -21,7 +21,7 @@ int main() {
 		counter++;
     }while(counter != n);
 	cout << "Lista: " << *lista << endl;
-	int escoja = 0;
+
 	while(escoja >= 0 and escoja <= 2) {
 		cout << "Qué quiere hacer (Agregar al principo (0), al final (1), o en el medio (2), o salir (otro valor))? ";
 		cin >> escoja;
@@ -34,7 +34,7 @@ int main() {
 				lista->insertarUltimo(v);
 			if(escoja == 2)
 				lista->insertar(lista->getTamanio() / 2, v);
-			cout << *lista << endl;
+			cout << "Lista: "<< *lista << endl;
 		}
  	}
     return 0;
