@@ -42,9 +42,9 @@ Pila<T>::Pila() {
  */
 template<class T>
 Pila<T>::~Pila() {
-	nodo<T> aux = tope;
+	nodo<T> *aux = tope;
 	while(aux != nullptr) {
-		tope = aux.getNext();
+		tope = aux->getNext();
 		delete aux;
 		aux = tope;
 	}
