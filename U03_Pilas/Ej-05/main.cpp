@@ -24,11 +24,8 @@ int main() {
         }else if(f[i] == '('){
             pila.push(f[i]);
         }else if(f[i] == ')'){
-            char c = pila.pop();
-            while(c != '(') {
+            while((c = pila.pop()) != '(')
                 fp += c;
-                c = pila.pop();
-            }
         }else{
             while((!pila.esVacia()) and (orden(pila.peek()) >= orden(f[i])))
                 fp += pila.pop();
