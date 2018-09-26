@@ -23,6 +23,6 @@ int main() {
         b.push(i);
     }
     
-    cout << (igualesPilas(a, b) ? "TRUE" : "FALSE") << endl;
+    cout << (igualesPilas(a, b) ? "IGUAL" : "INIGUAL") << endl;
     return 0;
 }
