@@ -4,19 +4,32 @@
 template<class T>
 class NodoArbol {
 private:
-    Nodo *raiz;
+    NodoArbol<T> *izq;
+    NodoArbol<T> *der;
+    T dato;
 public:
-    void dinsertar(T dato) {}
+    NodoArbol() {
+        izq = nullptr;
+        der = nullptr;
+    }
 
-    T buscar(T dato) {}
+    NodoArbol(T d) {
+        izq = nullptr;
+        der = nullptr;
+        dato = d;
+    }
 
-    void eliminar(T dato) {}
+    T getDato() const { return dato; }
 
-    void preorder() {}
+    void setDato(T dato) { this->dato = dato; }
 
-    void inorder() {}
+    void setIzq(nodo<T> *r) { this->izq = r; }
 
-    void postorder() {}
+    void setDer(nodo<T> *r) { this->der = r; }
+
+    NodoArbol *getIzq(nodo<T> *r) const { return izq; }
+
+    NodoArbol *getDer(nodo<T> *r) const { return der; }
 
     // void actualizar(T dato) {}
 

@@ -6,21 +6,15 @@
 template<class T>
 class ArbolBinario {
 private:
-
+    NodoArbol<T> *raiz;
 public:
     ArbolBinario();
 
     void put(T dato);
 
-    void put(T dato, NodoArbol<T> *r);
-
     T search(T dato);
 
-    T search(T dato, NodoArbol<T> *r);
-
     void remove(T dato);
-
-    void remove(T dato, NodoArbol<T> *r);
 
     void preorder();
 
@@ -33,7 +27,18 @@ public:
     bool esVacio();
 
     void print();
+protected:
+    void put(T dato, NodoArbol<T> *r);
 
+    T search(T dato, NodoArbol<T> *r);
+
+    NodoArbol<T> *remove(T dato, NodoArbol<T> *r);
+
+    void preorder(NodoArbol<T> *r);
+
+    void inorder(NodoArbol<T> *r);
+
+    void postorder(NodoArbol<T> *r);
 };
 
 
@@ -44,7 +49,7 @@ public:
  */
 template<class T>
 ArbolBinario<T>::ArbolBinario() {
-
+    raiz = nullptr;
 }
 
 
@@ -52,9 +57,7 @@ ArbolBinario<T>::ArbolBinario() {
  * Destructor del Arbol
  */
 template<class T>
-ArbolBinario<T>::~ArbolBinario() {
-
-}
+ArbolBinario<T>::~ArbolBinario() { }
 
 
 /**
@@ -70,6 +73,17 @@ T ArbolBinario<T>::search(T dato) {
 
 template<class T>
 T ArbolBinario<T>::search(T dato, NodoArbol<T> *r) {
+    if (r == nullptr)
+        throw 404;
+
+    if (dato == r->getDato())
+        return r->getDato();
+
+    if (dato > r->getDato())
+        return search(dato, r->getDer());
+
+    if (dato < r->getDato())
+        return search(dato, r->getIzq());
 }
 
 /**
@@ -80,7 +94,7 @@ T ArbolBinario<T>::search(T dato, NodoArbol<T> *r) {
 template<class T>
 void ArbolBinario<T>::put(T dato) {
     if(raiz != nullptr)
-        put(dato, raiz)
+        put(dato, raiz);
     else
         raiz = NodoArbol<T>(dato);
 }
@@ -92,18 +106,18 @@ void ArbolBinario<T>::put(T dato, NodoArbol<T> *r) {
     if(miDato == dato)
         throw 200;
 
-    auto nuevo = NodoArbol<T>(dato);
-   
     if(dato > miDato) {
-        if(dato > r->getDato()) {
+        if(r->getDer() != nullptr) {
             put(dato, r->getDer());
         }else{
+            auto *nuevo = new NodoArbol<T>(dato);
             r->setDer(nuevo);
         }
     }else{
-        if (dato < r->getDato()) {
+        if (r->getIzq() != nullptr) {
             put(dato, r->getIzq());
         }else{
+            auto *nuevo = new NodoArbol<T>(dato);
             r->setIzq(nuevo);
         }
     } 
@@ -132,12 +146,17 @@ NodoArbol<T> *ArbolBinario<T>::remove(T dato, NodoArbol<T> *r) {
         return r;
     }
 
-    if(r->getIzq() != nullptr)
-        put(r->getIzq(), r->getDer());
+    NodoArbol<T> *aux;
+    if (r->getIzq() != nullptr) {
+        if (r->getDer()) {
+            put(r->getIzq(), r->getDer());
+            aux = r->getDer();
+        } else {
+            aux = r->getIzq();
+        }
+    }
 
-    NodoArbol<T> *aux = r->getDer();
     delete r;
-
     return aux;
 }
 
@@ -147,7 +166,7 @@ NodoArbol<T> *ArbolBinario<T>::remove(T dato, NodoArbol<T> *r) {
  */
 template<class T>
 bool ArbolBinario<T>::esVacio() {
-    return false;
+    return (raiz == nullptr);
 }
 
 
@@ -156,7 +175,17 @@ bool ArbolBinario<T>::esVacio() {
  */
 template<class T>
 void ArbolBinario<T>::preorder() {
+    if (raiz != nullptr)
+        preorder(raiz)
+}
 
+template<class T>
+void ArbolBinario<T>::preorder(NodoArbol<T> *r) {
+    cout << r->getDato();
+    if(r->getIzq() != nullptr)
+        preorder(r->getIzq());
+    if(r->getDer() != nullptr)
+        preorder(r->getDer());
 }
 
 
@@ -165,18 +194,39 @@ void ArbolBinario<T>::preorder() {
  */
 template<class T>
 void ArbolBinario<T>::inorder() {
-
+    if (raiz != nullptr)
+        inorder(raiz)
 }
 
+template<class T>
+void ArbolBinario<T>::inorder(NodoArbol<T> *r) {
+    if(r->getIzq() != nullptr)
+        inorder(r->getIzq());
+
+    cout << r->getDato();
+
+    if(r->getDer() != nullptr)
+        inorder(r->getDer());
+}
 
 /**
  * Recorre un árbol en postorden
  */
 template<class T>
 void ArbolBinario<T>::postorder() {
-
+    if (raiz != nullptr)
+        postorder(raiz)
 }
 
+template<class T>
+void ArbolBinario<T>::postorder(NodoArbol<T> *r) {
+    if(r->getIzq() != nullptr)
+        postorder(r->getIzq());
+    if(r->getDer() != nullptr)
+        postorder(r->getDer());
+
+    cout << r->getDato();
+}
 
 /**
  * Muestra un árbol por consola
