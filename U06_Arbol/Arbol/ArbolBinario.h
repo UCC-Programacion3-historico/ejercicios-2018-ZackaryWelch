@@ -2,6 +2,9 @@
 #define ARBOLBINARIO_H
 
 #include "NodoArbol.h"
+#include <iostream>
+
+using namespace std;
 
 template<class T>
 class ArbolBinario {
@@ -96,7 +99,7 @@ void ArbolBinario<T>::put(T dato) {
     if(raiz != nullptr)
         put(dato, raiz);
     else
-        raiz = NodoArbol<T>(dato);
+        raiz = new NodoArbol<T>(dato);
 }
 
 template<class T>
@@ -128,9 +131,8 @@ void ArbolBinario<T>::put(T dato, NodoArbol<T> *r) {
  * @param clave Clave para identificar el nodo a borrar
  */
 template<class T>
-NodoArbol<T> *ArbolBinario<T>::remove(T dato) {
+void ArbolBinario<T>::remove(T dato) {
     raiz = remove(dato, raiz);
-    return raiz;
 }
 
 template<class T>
@@ -176,12 +178,12 @@ bool ArbolBinario<T>::esVacio() {
 template<class T>
 void ArbolBinario<T>::preorder() {
     if (raiz != nullptr)
-        preorder(raiz)
+        preorder(raiz);
 }
 
 template<class T>
 void ArbolBinario<T>::preorder(NodoArbol<T> *r) {
-    cout << r->getDato();
+    cout << r->getDato() << ' ';
     if(r->getIzq() != nullptr)
         preorder(r->getIzq());
     if(r->getDer() != nullptr)
@@ -195,7 +197,7 @@ void ArbolBinario<T>::preorder(NodoArbol<T> *r) {
 template<class T>
 void ArbolBinario<T>::inorder() {
     if (raiz != nullptr)
-        inorder(raiz)
+        inorder(raiz);
 }
 
 template<class T>
@@ -203,7 +205,7 @@ void ArbolBinario<T>::inorder(NodoArbol<T> *r) {
     if(r->getIzq() != nullptr)
         inorder(r->getIzq());
 
-    cout << r->getDato();
+    cout << r->getDato() << ' ';
 
     if(r->getDer() != nullptr)
         inorder(r->getDer());
@@ -215,7 +217,7 @@ void ArbolBinario<T>::inorder(NodoArbol<T> *r) {
 template<class T>
 void ArbolBinario<T>::postorder() {
     if (raiz != nullptr)
-        postorder(raiz)
+        postorder(raiz);
 }
 
 template<class T>
@@ -225,7 +227,7 @@ void ArbolBinario<T>::postorder(NodoArbol<T> *r) {
     if(r->getDer() != nullptr)
         postorder(r->getDer());
 
-    cout << r->getDato();
+    cout << r->getDato() << ' ';
 }
 
 /**

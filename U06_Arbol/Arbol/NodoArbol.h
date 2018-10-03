@@ -23,13 +23,13 @@ public:
 
     void setDato(T dato) { this->dato = dato; }
 
-    void setIzq(nodo<T> *r) { this->izq = r; }
+    void setIzq(NodoArbol<T> *r) { this->izq = r; }
 
-    void setDer(nodo<T> *r) { this->der = r; }
+    void setDer(NodoArbol<T> *r) { this->der = r; }
 
-    NodoArbol *getIzq(nodo<T> *r) const { return izq; }
+    NodoArbol *getIzq() const { return izq; }
 
-    NodoArbol *getDer(nodo<T> *r) const { return der; }
+    NodoArbol *getDer() const { return der; }
 
     // void actualizar(T dato) {}
 
