@@ -7,6 +7,17 @@ private:
     T dato;
     nodo *next;
 public:
+    nodo(T d) {
+		dato = d;
+		next = nullptr;
+	}
+
+	nodo(T d, nodo *n) {
+		dato = d;
+		next = n;
+	}
+
+
     T setDato(T dato) {
         this->dato = dato;
     }
