@@ -60,7 +60,7 @@ Pila<T>::~Pila() {
  */
 template<class T>
 void Pila<T>::push(T dato) {
-	auto *nuevo = new nodo<T>();
+	auto *nuevo = new nodo<T>(dato);
 	nuevo->setNext(tope);
 	nuevo->setDato(dato);
 	tope = nuevo;
