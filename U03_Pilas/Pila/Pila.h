@@ -1,5 +1,5 @@
-#ifndef LISTA_H
-#define LISTA_H
+#ifndef PILA_H
+#define PILA_H
 
 #include "nodo.h"
 
@@ -101,4 +101,4 @@ T Pila<T>::peek() {
 	return dato;	
 }
 
-#endif //LISTA_H
+#endif //PILA_H
