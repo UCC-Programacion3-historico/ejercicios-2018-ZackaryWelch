@@ -37,6 +37,8 @@ public:
     void reemplazar(int pos, T dato);
 
     void vaciar();
+
+    void insertAfter2(T oldValue, int n, T newValue);
 };
 
 
@@ -106,7 +108,7 @@ int Lista<T>::getTamanio() {
  */
 template<class T>
 void Lista<T>::insertar(unsigned int pos, T dato) {
-    auto *nuevo = new nodo<T>();
+    auto *nuevo = new nodo<T>(dato);
     nuevo->setDato(dato);
     nodo<T> *aux = inicio;
     unsigned int pos_actual = 0;
@@ -235,6 +237,24 @@ void Lista<T>::reemplazar(int pos, T dato) {
  */
 template<class T>
 void Lista<T>::vaciar() {}
+
+template<class T>
+void Lista<T>::insertAfter2(T oldValue, int n, T newValue) {
+    auto *nuevo = new nodo<T>(newValue);
+    nodo<T> *aux = inicio;
+    unsigned int occur = 0;
+
+    while(aux != nullptr) {
+        if(aux->getDato() == oldValue)
+            occur++; 
+        if(occur == n) {
+            nuevo->setNext(aux->getNext());
+            aux->setNext(nuevo);
+            return;
+        }
+        aux = aux->getNext();
+    }
+}
 
 template<class T>
 std::ostream& operator<<(std::ostream& os, Lista<T>& l) {
