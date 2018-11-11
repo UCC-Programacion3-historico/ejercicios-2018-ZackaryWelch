@@ -8,7 +8,7 @@ class Entero {
 public:
 	Entero();
 	Entero(int i);
-	int i;
+	int i, j, k;
 };
 
 Entero operator+(const Entero &a, const Entero &b);
