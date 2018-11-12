@@ -3,20 +3,6 @@
 
 using namespace std;
 
-int find(int *a, int s, int e, int v) {
-    for(int i = s; i < e; i++) {
-        if(a[i] == v)
-            return i;
-    }
-}
-
-void buildArbolA(ArbolBinario<int> *a, int *ain, int *apre) {
-    int inOrderIndex = find(ain, 0, 9, apre[0]);
-}
-
-void buildArbolB(ArbolBinario<int> *b, int* bin, int* bpost) {
-    int inOrderIndex = find(bin, 0, 13, bpost[12]);
-}
 
 int main() {
     int apre[9] = {2,5,3,9,7,1,6,4,8};
@@ -26,10 +12,10 @@ int main() {
 
     ArbolBinario<int> *a = new ArbolBinario<int>();
     a->put(apre[0]);
+    //a->buildArbolInPre(ain, apre);
     ArbolBinario<int> *b = new ArbolBinario<int>();
-    b->put(bpost[12]);
-    buildArbolA(a, ain, apre);
-    buildArbolB(b, bin, bpost);
+    //b->put(bpost[12]);
+    b->buildArbolInPost(bin, bpost, 13);
 
     cout << "Ejercicio 05/02\n" << endl;
 

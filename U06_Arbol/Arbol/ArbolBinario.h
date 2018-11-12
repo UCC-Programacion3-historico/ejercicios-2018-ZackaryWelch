@@ -30,6 +30,13 @@ public:
     bool esVacio();
 
     void print();
+
+    int contarPorNivel(int nivel);
+
+    void buildArbolInPre(T *in, T *pre, int n);
+
+    void buildArbolInPost(T *in, T *post, int n);
+
 protected:
     void put(T dato, NodoArbol<T> *r);
 
@@ -42,6 +49,12 @@ protected:
     void inorder(NodoArbol<T> *r);
 
     void postorder(NodoArbol<T> *r);
+
+    int contarPorNivel(NodoArbol<T> *r, int curr, int nivel);
+
+    NodoArbol<T> *buildArbolInPre(T *in, T *pre, int start, int end, int pi);
+
+    NodoArbol<T> *buildArbolInPost(T *in, T *post, int start, int end, int pi);
 };
 
 
@@ -238,5 +251,77 @@ void ArbolBinario<T>::print() {
 
 }
 
+//Devuelve el numero de nodos del nivel iesimo del arbol
+template<class T>
+int ArbolBinario<T>::contarPorNivel(NodoArbol<T> *r, int curr, int nivel) {
+    if(r == nullptr)
+        return 0;
+    if(curr == nivel)
+        return 1;
+    return contarPorNivel(r->getIzq(), curr+1, nivel) + contarPorNivel(r->getDer(), curr+1, nivel);
+}
+
+template<class T>
+int ArbolBinario<T>::contarPorNivel(int nivel) {
+    if(raiz != nullptr)
+        return contarPorNivel(raiz, 0, nivel);
+    else
+        return 0;
+}
+
+int find(int *a, int s, int e, int v) {
+    for(int i = s; i < e; i++) {
+        if(a[i] == v)
+            return i;
+    }
+}   
+
+template<class T>
+NodoArbol<T> *ArbolBinario<T>::buildArbolInPre(T *in, T *post, int start, int end, int pi) { 
+    if(start > end)
+        return nullptr;
+  
+    NodoArbol<T> *node = new NodoArbol<T>(post[pi]); 
+    pi--; 
+
+    if(start == end)
+        return node;
+  
+    int iIndex = find(in, start, end, node->getDato()); 
+  
+    node->setDer(buildArbolInPre(in, post, iIndex + 1, end, pi)); 
+    node->setIzq(buildArbolInPre(in, post, start, iIndex - 1, pi)); 
+
+    return node;
+}
+
+template<class T>
+NodoArbol<T> *ArbolBinario<T>::buildArbolInPost(T *in, T *post, int start, int end, int pi) { 
+    if(start > end)
+        return nullptr;
+  
+    NodoArbol<T> *node = new NodoArbol<T>(post[pi]); 
+    pi--; 
+
+    if(start == end)
+        return node;
+  
+    int iIndex = find(in, start, end, node->getDato()); 
+  
+    node->setDer(buildArbolInPost(in, post, iIndex + 1, end, pi)); 
+    node->setIzq(buildArbolInPost(in, post, start, iIndex - 1, pi)); 
+
+    return node;
+} 
+
+template<class T>
+void ArbolBinario<T>::buildArbolInPost(T *in, T *post, int n) {
+    this->raiz = buildArbolInPost(in, post, 0, n - 1, n - 1);
+}
+
+template<class T>
+void ArbolBinario<T>::buildArbolInPre(T *in, T *pre, int n) {
+    this->raiz = buildArbolInPre(in, pre, 0, n - 1, n - 1);
+}
 
 #endif //ARBOLBINARIO_H
