@@ -1,3 +1,5 @@
+#include <iostream>
+
 #ifndef HASHMAP_H
 #define HASHMAP_H
 
@@ -77,6 +79,7 @@ void HashMap<K, T>::remove(K clave) {
         throw 404;
 
     delete datos[idx];
+    datos[idx] = nullptr;
     tam--;
 
     rehash(); 
@@ -85,13 +88,13 @@ void HashMap<K, T>::remove(K clave) {
 template<class K, class T>
 void HashMap<K, T>::rehash() {
     int oldTam = tam;
-    int tam = tam * 2 + 1;
+    int tam = tam-1;
     T **newDatos = new T *[tam];
     for(int i = 0; i < oldTam; i++) {
         if(datos[i] != nullptr) {
-            int idx = (idx + (i*i)) % tam;
+            int idx = i % tam;
             newDatos[idx] = datos[i];
-        }            
+        } 
     }
 
     delete [] datos;

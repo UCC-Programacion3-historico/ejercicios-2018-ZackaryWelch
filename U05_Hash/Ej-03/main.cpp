@@ -28,8 +28,11 @@ int main() {
 
     hash.remove(claves[3]);
 
-    for(int i = 0; i < TAM; i++)
+    for(int i = 0; i < TAM; i++) {
+        if(i == 3)
+            continue;
         cout << "Posicion: " << i+1 << "\tClave: " << claves[i] << "\t Valor: " << hash.get(claves[i]) << endl;
+    }
 
      return 0;
 }
