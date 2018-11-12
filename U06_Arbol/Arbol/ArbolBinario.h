@@ -37,6 +37,8 @@ public:
 
     void buildArbolInPost(T *in, T *post, int n);
 
+    void espejo();
+
 protected:
     void put(T dato, NodoArbol<T> *r);
 
@@ -55,6 +57,8 @@ protected:
     NodoArbol<T> *buildArbolInPre(T *in, T *pre, int start, int end, int pi);
 
     NodoArbol<T> *buildArbolInPost(T *in, T *post, int start, int end, int pi);
+
+    void espejo(NodoArbol<T> *r);
 };
 
 
@@ -322,6 +326,25 @@ void ArbolBinario<T>::buildArbolInPost(T *in, T *post, int n) {
 template<class T>
 void ArbolBinario<T>::buildArbolInPre(T *in, T *pre, int n) {
     this->raiz = buildArbolInPre(in, pre, 0, n - 1, n - 1);
+}
+
+template<class T>
+void ArbolBinario<T>::espejo(NodoArbol<T> *r) {
+    if(r == nullptr) {
+        return;
+    }else{
+        espejo(r->getIzq());   
+        espejo(r->getDer());   
+    
+        NodoArbol<T> *aux = r->getIzq();
+        r->setIzq(r->getDer());
+        r->setDer(aux);
+    }
+}
+
+template<class T>
+void ArbolBinario<T>::espejo() {
+    espejo(raiz);
 }
 
 #endif //ARBOLBINARIO_H
